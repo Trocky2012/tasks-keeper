@@ -1,10 +1,14 @@
 package com.starengtech.tasksKeeper.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +20,8 @@ public class TkUser implements Serializable {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String fName;
+    private String lName;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -26,6 +31,11 @@ public class TkUser implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant lastLoginTime;
 
+    //private List<String> sections = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "tkUser")
+    private List<TkSection> sections = new ArrayList<>();
+
     //List<Role>: role
     //List<Adverts>: adverts
     //List<Doubts>: doubts
@@ -34,9 +44,10 @@ public class TkUser implements Serializable {
     public TkUser() {
     }
 
-    public TkUser(Long id, String name, String email, String password) {
+    public TkUser(Long id, String fName, String lName, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.fName = fName;
+        this.lName = lName;
         this.email = email;
         this.password = password;
     }
@@ -49,12 +60,20 @@ public class TkUser implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFName() {
+        return fName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getLName() {
+        return lName;
+    }
+
+    public void setLName(String lName) {
+        this.lName = lName;
     }
 
     public String getEmail() {
@@ -87,6 +106,20 @@ public class TkUser implements Serializable {
 
     public void setLastLoginTime(Instant lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
+    }
+
+    public List<TkSection> getSections(){ return sections; }
+
+    public void setSections(List<TkSection> sections) {
+        this.sections = sections;
+    }
+
+    public void addSection(TkSection sections) {
+        this.sections.add(sections);
+    }
+
+    public void removeSection(TkSection sections) {
+        this.sections.remove(sections);
     }
 
     @Override

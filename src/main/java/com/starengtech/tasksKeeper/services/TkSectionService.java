@@ -1,7 +1,7 @@
 package com.starengtech.tasksKeeper.services;
 
-import com.starengtech.tasksKeeper.entities.TkUser;
-import com.starengtech.tasksKeeper.repositories.TkUserRepository;
+import com.starengtech.tasksKeeper.entities.TkSection;
+import com.starengtech.tasksKeeper.repositories.TkSectionRepository;
 import com.starengtech.tasksKeeper.services.exceptions.DatabaseException;
 import com.starengtech.tasksKeeper.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,40 +15,34 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProfileService {
+public class TkSectionService {
 
     @Autowired
-    private TkUserRepository repository;
+    private TkSectionRepository repository;
 
-    public List<TkUser> findAll() {
+    public List<TkSection> findAll() {
         return repository.findAll();
     }
 
-    public TkUser findById(Long id) {
-        Optional<TkUser> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id) );
-    }
-
-    public Optional<TkUser> findByEmail(String email) {
+    public Optional<TkSection>  findById(Long id) {
         try{
-            return repository.findByEmail(email);
+            return repository.findById(id);
         }catch(DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    public Optional<TkUser> findByEmailAndPassword(String email, String password) {
+    public Optional<TkSection> findByTitle(String title) {
         try{
-            String decodedPssd = password.replace("kw*s.x$37tth@$u0K8lE9","").replace("0K2.lp$fzE6qj*tk5lp@$","").trim();
-            return repository.findByEmailAndPassword(email,decodedPssd);
+            return repository.findByTitle(title);
         }catch(DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    public TkUser insert(TkUser profile) {
-        profile.setLastLoginTime(Instant.now());
-        return repository.save(profile);
+    public TkSection insert(TkSection section) {
+        section.setInsertTime(Instant.now());
+        return repository.save(section);
     }
 
     public void delete(Long id) {
@@ -61,10 +55,10 @@ public class ProfileService {
         }
     }
 
-    public TkUser update(Long id, TkUser profile) {
+    public TkSection update(Long id, TkSection section) {
         try {
-            TkUser entity = repository.getById(id);
-            entity.setName(profile.getName());
+            TkSection entity = repository.getById(id);
+            entity.setTitle(section.getTitle());
             return repository.save(entity);
         }catch(EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);

@@ -1,11 +1,14 @@
 package com.starengtech.tasksKeeper.entitiesDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.starengtech.tasksKeeper.entities.TkSection;
 import com.starengtech.tasksKeeper.entities.TkUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class TkUserDTO implements Serializable {
@@ -22,16 +25,21 @@ public class TkUserDTO implements Serializable {
     private String password;
     private boolean flActive;
 
+    private List<TkSection> sections = new ArrayList<>();
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant lastLoginTime;
 
     public TkUserDTO() {
     }
 
-    public TkUserDTO(TkUser profile){
-        this.name = profile.getName();
-        this.email = profile.getEmail();
-        this.password = profile.getPassword();
+    public TkUserDTO(TkUser tkuser){
+        this.id = tkuser.getId();
+        this.name = tkuser.getFName();
+        this.email = tkuser.getEmail();
+        this.password = tkuser.getPassword();
+        this.flActive = tkuser.isFlActive();
+        this.sections.addAll(tkuser.getSections());
     }
 
     public TkUserDTO(String name, String email, String password, String nationality) {
@@ -62,6 +70,10 @@ public class TkUserDTO implements Serializable {
 
     public Instant getLastLoginTime() {
         return lastLoginTime;
+    }
+
+    public List<TkSection> getSections() {
+        return sections;
     }
 
     @Override

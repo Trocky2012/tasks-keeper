@@ -2,7 +2,7 @@ package com.starengtech.tasksKeeper.resources;
 
 import com.starengtech.tasksKeeper.entities.TkUser;
 import com.starengtech.tasksKeeper.entitiesDTO.TkUserDTO;
-import com.starengtech.tasksKeeper.services.ProfileService;
+import com.starengtech.tasksKeeper.services.TkUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class TkUserResource {
     
     @Autowired
-    private ProfileService service;
+    private TkUserService service;
 
     @GetMapping
     public ResponseEntity<List<TkUserDTO>> findAll(){

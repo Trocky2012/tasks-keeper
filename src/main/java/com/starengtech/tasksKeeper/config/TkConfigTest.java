@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 @Configuration
 @Profile("test")
-public class ConfigTest implements CommandLineRunner {
+public class TkConfigTest implements CommandLineRunner {
 
     @Autowired
     private TkUserRepository profileRepository;
@@ -19,8 +19,8 @@ public class ConfigTest implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        TkUser u1 = new TkUser(null, "Thiago", "thiago@gmail.com", "123456");
-        TkUser u2 = new TkUser(null, "Aline", "aline@gmail.com", "123456");
+        TkUser u1 = new TkUser(null, "Thiago","Trolle", "thiago@gmail.com", "123456");
+        TkUser u2 = new TkUser(null, "Aline","Scheffer", "aline@gmail.com", "123456");
 
         profileRepository.saveAll(Arrays.asList(u1, u2));
     }
