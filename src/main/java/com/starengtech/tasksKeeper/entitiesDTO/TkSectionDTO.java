@@ -22,9 +22,9 @@ public class TkSectionDTO implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "userId")
-    private TkUser tkUser;
+    private TkUser tkUser;*/
 
     public TkSectionDTO() {
     }
@@ -64,13 +64,13 @@ public class TkSectionDTO implements Serializable {
         this.insertTime = insertTime;
     }
 
-    public TkUser getTkUser() {
+    /*public TkUser getTkUser() {
         return tkUser;
     }
 
     public void setTkUser(TkUser tkUser) {
         this.tkUser = tkUser;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

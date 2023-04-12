@@ -1,8 +1,8 @@
 package com.starengtech.tasksKeeper.resources;
 
-import com.starengtech.tasksKeeper.entities.TkSection;
-import com.starengtech.tasksKeeper.entitiesDTO.TkSectionDTO;
-import com.starengtech.tasksKeeper.services.TkSectionService;
+import com.starengtech.tasksKeeper.entities.TkNote;
+import com.starengtech.tasksKeeper.entitiesDTO.TkNoteDTO;
+import com.starengtech.tasksKeeper.services.TkNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,25 +13,25 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/tksection")
-public class TkSectionResource {
+@RequestMapping(value = "/tknote")
+public class TkNoteResource {
     
     @Autowired
-    private TkSectionService service;
+    private TkNoteService service;
 
     @GetMapping
-    public ResponseEntity<List<TkSectionDTO>> findAll(){
-        List<TkSection> list = service.findAll();
-        List<TkSectionDTO> listDto = list.stream().map(x -> new TkSectionDTO(x)).collect(Collectors.toList());
+    public ResponseEntity<List<TkNoteDTO>> findAll(){
+        List<TkNote> list = service.findAll();
+        List<TkNoteDTO> listDto = list.stream().map(x -> new TkNoteDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TkSectionDTO> findById(@PathVariable Long id){
-        Optional<TkSection> section;
+    public ResponseEntity<TkNoteDTO> findById(@PathVariable Long id){
+        Optional<TkNote> section;
         section = service.findById(id);
         if(!section.isEmpty()){
-            TkSectionDTO userDto = new TkSectionDTO(section.get());
+            TkNoteDTO userDto = new TkNoteDTO(section.get());
             return ResponseEntity.ok().body(userDto);
         }else{
             return ResponseEntity.noContent().build();
@@ -39,12 +39,12 @@ public class TkSectionResource {
     }
 
     @GetMapping(value = "/find-by-title")
-    public ResponseEntity <TkSectionDTO> findByTitle(@RequestParam(name = "title") String title) {
-        Optional<TkSection> profile;
+    public ResponseEntity <TkNoteDTO> findByTitle(@RequestParam(name = "title") String title) {
+        Optional<TkNote> profile;
         profile = service.findByTitle(title);
 
         if(!profile.isEmpty()){
-            TkSectionDTO userDto = new TkSectionDTO(profile.get());
+            TkNoteDTO userDto = new TkNoteDTO(profile.get());
             return ResponseEntity.ok().body(userDto);
         }else{
             return ResponseEntity.noContent().build();
@@ -52,8 +52,8 @@ public class TkSectionResource {
     }
 
     @PostMapping
-    public ResponseEntity<TkSectionDTO> insert(@RequestBody TkSection Profile){
-        TkSectionDTO ProfileDTO = new TkSectionDTO(service.insert(Profile));
+    public ResponseEntity<TkNoteDTO> insert(@RequestBody TkNote Profile){
+        TkNoteDTO ProfileDTO = new TkNoteDTO(service.insert(Profile));
         return ResponseEntity.ok().body(ProfileDTO);
     }
 

@@ -31,15 +31,10 @@ public class TkUser implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant lastLoginTime;
 
-    //private List<String> sections = new ArrayList<>();
     @JsonIgnore
     @OneToMany(mappedBy = "tkUser")
     private List<TkSection> sections = new ArrayList<>();
 
-    //List<Role>: role
-    //List<Adverts>: adverts
-    //List<Doubts>: doubts
-    //List<Tips>: tips
 
     public TkUser() {
     }
@@ -50,6 +45,14 @@ public class TkUser implements Serializable {
         this.lName = lName;
         this.email = email;
         this.password = password;
+    }
+    public TkUser(Long id, String fName, String lName, String email, String password, List<TkSection> sections) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.password = password;
+        this.sections = sections;
     }
 
     public Long getId() {
@@ -112,14 +115,6 @@ public class TkUser implements Serializable {
 
     public void setSections(List<TkSection> sections) {
         this.sections = sections;
-    }
-
-    public void addSection(TkSection sections) {
-        this.sections.add(sections);
-    }
-
-    public void removeSection(TkSection sections) {
-        this.sections.remove(sections);
     }
 
     @Override

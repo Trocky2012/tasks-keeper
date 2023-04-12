@@ -1,6 +1,8 @@
 package com.starengtech.tasksKeeper.resources;
 
+import com.starengtech.tasksKeeper.entities.TkSection;
 import com.starengtech.tasksKeeper.entities.TkUser;
+import com.starengtech.tasksKeeper.entitiesDTO.TkSectionDTO;
 import com.starengtech.tasksKeeper.entitiesDTO.TkUserDTO;
 import com.starengtech.tasksKeeper.services.TkUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,14 @@ public class TkUserResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TkUserDTO> findById(@PathVariable Long id){
-        TkUserDTO ProfileDTO = new TkUserDTO(service.findById(id));
-        return ResponseEntity.ok().body(ProfileDTO);
+    public ResponseEntity<TkUser> findById(@PathVariable Long id){
+        Optional<TkUser> user;
+        user = service.findById(id);
+        if(!user.isEmpty()){
+            return ResponseEntity.ok().body(user.get());
+        }else{
+            return ResponseEntity.noContent().build();
+        }
     }
 
     @GetMapping(value = "/find-by-email")

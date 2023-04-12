@@ -29,6 +29,48 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Sections",
+					"item": [
+						{
+							"name": "Get all",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get by id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notes",
+					"item": [
+						{
+							"name": "Get all",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get by id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

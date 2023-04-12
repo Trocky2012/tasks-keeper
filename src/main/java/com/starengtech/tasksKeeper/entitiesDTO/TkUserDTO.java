@@ -25,10 +25,8 @@ public class TkUserDTO implements Serializable {
     private String password;
     private boolean flActive;
 
-    private List<TkSection> sections = new ArrayList<>();
+    //private List<TkSection> sections = new ArrayList<>();
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
-    private Instant lastLoginTime;
 
     public TkUserDTO() {
     }
@@ -39,13 +37,11 @@ public class TkUserDTO implements Serializable {
         this.email = tkuser.getEmail();
         this.password = tkuser.getPassword();
         this.flActive = tkuser.isFlActive();
-        this.sections.addAll(tkuser.getSections());
     }
 
-    public TkUserDTO(String name, String email, String password, String nationality) {
+    public TkUserDTO(String name, String email) {
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -66,14 +62,6 @@ public class TkUserDTO implements Serializable {
 
     public boolean isFlActive() {
         return flActive;
-    }
-
-    public Instant getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public List<TkSection> getSections() {
-        return sections;
     }
 
     @Override

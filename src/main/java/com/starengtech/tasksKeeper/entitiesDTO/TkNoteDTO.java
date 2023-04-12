@@ -1,44 +1,45 @@
-package com.starengtech.tasksKeeper.entities;
+package com.starengtech.tasksKeeper.entitiesDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.starengtech.tasksKeeper.entities.TkNote;
+import com.starengtech.tasksKeeper.entities.TkSection;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name="tb_tksection")
-public class TkSection implements Serializable {
+public class TkNoteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userId;
     private String title;
+    private String content;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private TkUser tkUser;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "tkSection")
-    private List<TkNote> notes = new ArrayList<>();
-
-    public TkSection() {
+    public TkNoteDTO() {
     }
 
-    public TkSection(Long id, String title,TkUser tkUser ) {
+    public TkNoteDTO(TkNote tknote){
+        this.id = tknote.getId();
+        this.userId = tknote.getUserId();
+        this.title = tknote.getTitle();
+        this.content = tknote.getContent();
+        this.insertTime = tknote.getInsertTime();
+    }
+
+    public TkNoteDTO(Long id, Long userId, String title, TkSection tkSection ) {
         this.id = id;
+        this.userId = userId;
+        this.userId = userId;
         this.title = title;
-        this.tkUser = tkUser;
     }
 
     public Long getId() {
@@ -65,19 +66,27 @@ public class TkSection implements Serializable {
         this.insertTime = insertTime;
     }
 
-    public TkUser getTkUser() {
-        return tkUser;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setTkUser(TkUser tkUser) {
-        this.tkUser = tkUser;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TkSection profile = (TkSection) o;
+        TkNoteDTO profile = (TkNoteDTO) o;
         return id.equals(profile.id);
     }
 
