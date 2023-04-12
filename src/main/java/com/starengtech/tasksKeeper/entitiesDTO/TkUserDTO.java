@@ -1,12 +1,10 @@
 package com.starengtech.tasksKeeper.entitiesDTO;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.starengtech.tasksKeeper.entities.TkSection;
 import com.starengtech.tasksKeeper.entities.TkUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,14 +16,13 @@ public class TkUserDTO implements Serializable {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-
-    @Column(name = "email", nullable = false)
+    private String fName;
+    private String lName;
     private String email;
     private String password;
     private boolean flActive;
 
-    //private List<TkSection> sections = new ArrayList<>();
+    private List<TkSection> sections = new ArrayList<>();
 
 
     public TkUserDTO() {
@@ -33,23 +30,24 @@ public class TkUserDTO implements Serializable {
 
     public TkUserDTO(TkUser tkuser){
         this.id = tkuser.getId();
-        this.name = tkuser.getFName();
+        this.fName = tkuser.getFName();
+        this.lName = tkuser.getLName();
         this.email = tkuser.getEmail();
         this.password = tkuser.getPassword();
         this.flActive = tkuser.isFlActive();
-    }
-
-    public TkUserDTO(String name, String email) {
-        this.name = name;
-        this.email = email;
+        this.sections = tkuser.getSections();
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFName() {
+        return fName;
+    }
+
+    public String getLName() {
+        return lName;
     }
 
     public String getEmail() {
@@ -62,6 +60,18 @@ public class TkUserDTO implements Serializable {
 
     public boolean isFlActive() {
         return flActive;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public List<TkSection> getSections() {
+        return sections;
     }
 
     @Override

@@ -1,7 +1,10 @@
 package com.starengtech.tasksKeeper.resources;
 
 import com.starengtech.tasksKeeper.entities.TkNote;
+import com.starengtech.tasksKeeper.entities.TkSection;
+import com.starengtech.tasksKeeper.entities.TkUser;
 import com.starengtech.tasksKeeper.entitiesDTO.TkNoteDTO;
+import com.starengtech.tasksKeeper.entitiesDTO.TkSectionDTO;
 import com.starengtech.tasksKeeper.services.TkNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -61,5 +64,21 @@ public class TkNoteResource {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //-------------
+
+    @GetMapping(value = "/find-by-section")
+    public ResponseEntity<List<TkNoteDTO>> findBySection (@RequestBody TkSection tkSection){
+        List<TkNote> list = service.findBySection (tkSection);
+        List<TkNoteDTO> listDto = list.stream().map(x -> new TkNoteDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+    }
+
+    @GetMapping(value = "/find-by-user-id/{id}")
+    public ResponseEntity<List<TkNoteDTO>> findByUserId(@PathVariable Long id){
+        List<TkNote> list = service.findByUserId(id);
+        List<TkNoteDTO> listDto = list.stream().map(x -> new TkNoteDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 }

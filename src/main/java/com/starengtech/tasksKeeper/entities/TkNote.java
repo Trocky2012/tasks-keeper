@@ -20,7 +20,6 @@ public class TkNote implements Serializable {
     private Long userId;
     private String title;
     private String content;
-
     private NoteStatus noteStatus;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
@@ -36,6 +35,14 @@ public class TkNote implements Serializable {
     public TkNote(Long id, Long userId, String title, TkSection tkSection ) {
         this.id = id;
         this.userId = userId;
+        this.title = title;
+        this.tkSection = tkSection;
+        this.noteStatus = NoteStatus.ACTIVE;
+    }
+    public TkNote(Long id, Long userId, String title, String content, TkSection tkSection ) {
+        this.id = id;
+        this.userId = userId;
+        this.content = content;
         this.title = title;
         this.tkSection = tkSection;
         this.noteStatus = NoteStatus.ACTIVE;

@@ -27,6 +27,22 @@
 								"header": []
 							},
 							"response": []
+						},
+						{
+							"name": "Get by email",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -48,6 +64,22 @@
 								"header": []
 							},
 							"response": []
+						},
+						{
+							"name": "Get by User",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -64,6 +96,30 @@
 						},
 						{
 							"name": "Get by id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get by Section",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "get by User id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
 							"request": {
 								"method": "GET",
 								"header": []

@@ -1,6 +1,8 @@
 package com.starengtech.tasksKeeper.services;
 
 import com.starengtech.tasksKeeper.entities.TkNote;
+import com.starengtech.tasksKeeper.entities.TkSection;
+import com.starengtech.tasksKeeper.entities.TkUser;
 import com.starengtech.tasksKeeper.repositories.TkNoteRepository;
 import com.starengtech.tasksKeeper.services.exceptions.DatabaseException;
 import com.starengtech.tasksKeeper.services.exceptions.ResourceNotFoundException;
@@ -63,6 +65,15 @@ public class TkNoteService {
         }catch(EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
+    }
+
+    //-------------
+
+    public List<TkNote> findBySection(TkSection tkSection){
+        return repository.findByTkSection(tkSection);
+    }
+    public List<TkNote> findByUserId(Long id){
+        return repository.findByUserId(id);
     }
 
 }

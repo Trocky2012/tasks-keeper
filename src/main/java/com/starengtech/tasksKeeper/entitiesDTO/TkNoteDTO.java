@@ -1,8 +1,8 @@
 package com.starengtech.tasksKeeper.entitiesDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.starengtech.tasksKeeper.entities.Enum.NoteStatus;
 import com.starengtech.tasksKeeper.entities.TkNote;
-import com.starengtech.tasksKeeper.entities.TkSection;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +19,7 @@ public class TkNoteDTO implements Serializable {
     private Long userId;
     private String title;
     private String content;
+    private NoteStatus noteStatus;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
@@ -32,14 +33,8 @@ public class TkNoteDTO implements Serializable {
         this.userId = tknote.getUserId();
         this.title = tknote.getTitle();
         this.content = tknote.getContent();
+        this.noteStatus=tknote.getNoteStatus();
         this.insertTime = tknote.getInsertTime();
-    }
-
-    public TkNoteDTO(Long id, Long userId, String title, TkSection tkSection ) {
-        this.id = id;
-        this.userId = userId;
-        this.userId = userId;
-        this.title = title;
     }
 
     public Long getId() {

@@ -22,18 +22,18 @@ public class TkUserResource {
     private TkUserService service;
 
     @GetMapping
-    public ResponseEntity<List<TkUserDTO>> findAll(){
+    public ResponseEntity<List<TkUser>> findAll(){
         List<TkUser> list = service.findAll();
-        List<TkUserDTO> listDto = list.stream().map(x -> new TkUserDTO(x)).collect(Collectors.toList());
-        return ResponseEntity.ok().body(listDto);
+        //List<TkUserDTO> listDto = list.stream().map(x -> new TkUserDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TkUser> findById(@PathVariable Long id){
+    public ResponseEntity<TkUserDTO> findById(@PathVariable Long id){
         Optional<TkUser> user;
         user = service.findById(id);
         if(!user.isEmpty()){
-            return ResponseEntity.ok().body(user.get());
+            return ResponseEntity.ok().body(new TkUserDTO(user.get()));
         }else{
             return ResponseEntity.noContent().build();
         }

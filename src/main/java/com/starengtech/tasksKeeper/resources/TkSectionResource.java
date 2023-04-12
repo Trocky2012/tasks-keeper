@@ -1,6 +1,7 @@
 package com.starengtech.tasksKeeper.resources;
 
 import com.starengtech.tasksKeeper.entities.TkSection;
+import com.starengtech.tasksKeeper.entities.TkUser;
 import com.starengtech.tasksKeeper.entitiesDTO.TkSectionDTO;
 import com.starengtech.tasksKeeper.services.TkSectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,14 @@ public class TkSectionResource {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //-------------
+
+    @GetMapping(value = "/find-by-user")
+    public ResponseEntity<List<TkSectionDTO>> findByUser(@RequestBody TkUser tkUser){
+        List<TkSection> list = service.findByUser(tkUser);
+        List<TkSectionDTO> listDto = list.stream().map(x -> new TkSectionDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 }

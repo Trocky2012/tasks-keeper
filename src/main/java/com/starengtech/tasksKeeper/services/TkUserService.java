@@ -49,9 +49,10 @@ public class TkUserService {
         }
     }
 
-    public TkUser insert(TkUser profile) {
-        profile.setLastLoginTime(Instant.now());
-        return repository.save(profile);
+    public TkUser insert(TkUser tkUser) {
+        tkUser.setLastLoginTime(Instant.now());
+        tkUser.setFlActive(true);
+        return repository.save(tkUser);
     }
 
     public void delete(Long id) {

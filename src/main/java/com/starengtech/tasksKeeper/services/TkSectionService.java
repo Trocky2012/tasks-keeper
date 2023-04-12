@@ -1,6 +1,7 @@
 package com.starengtech.tasksKeeper.services;
 
 import com.starengtech.tasksKeeper.entities.TkSection;
+import com.starengtech.tasksKeeper.entities.TkUser;
 import com.starengtech.tasksKeeper.repositories.TkSectionRepository;
 import com.starengtech.tasksKeeper.services.exceptions.DatabaseException;
 import com.starengtech.tasksKeeper.services.exceptions.ResourceNotFoundException;
@@ -63,6 +64,12 @@ public class TkSectionService {
         }catch(EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
+    }
+
+    //-------------
+
+    public List<TkSection> findByUser(TkUser tkUser){
+        return repository.findByTkUser(tkUser);
     }
 
 }

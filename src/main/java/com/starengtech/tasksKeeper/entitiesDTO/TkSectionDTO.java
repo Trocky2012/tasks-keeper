@@ -2,7 +2,6 @@ package com.starengtech.tasksKeeper.entitiesDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.starengtech.tasksKeeper.entities.TkSection;
-import com.starengtech.tasksKeeper.entities.TkUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,16 +21,8 @@ public class TkSectionDTO implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
 
-    /*@ManyToOne
-    @JoinColumn(name = "userId")
-    private TkUser tkUser;*/
 
     public TkSectionDTO() {
-    }
-
-    public TkSectionDTO(Long id, String title) {
-        this.id = id;
-        this.title = title;
     }
 
     public TkSectionDTO(TkSection tksection){
@@ -64,13 +55,6 @@ public class TkSectionDTO implements Serializable {
         this.insertTime = insertTime;
     }
 
-    /*public TkUser getTkUser() {
-        return tkUser;
-    }
-
-    public void setTkUser(TkUser tkUser) {
-        this.tkUser = tkUser;
-    }*/
 
     @Override
     public boolean equals(Object o) {

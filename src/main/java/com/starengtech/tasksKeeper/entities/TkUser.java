@@ -45,6 +45,7 @@ public class TkUser implements Serializable {
         this.lName = lName;
         this.email = email;
         this.password = password;
+        this.flActive = true;
     }
     public TkUser(Long id, String fName, String lName, String email, String password, List<TkSection> sections) {
         this.id = id;
@@ -53,6 +54,7 @@ public class TkUser implements Serializable {
         this.email = email;
         this.password = password;
         this.sections = sections;
+        this.flActive = true;
     }
 
     public Long getId() {
