@@ -13,6 +13,14 @@
 					"name": "Users",
 					"item": [
 						{
+							"name": "Insert",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
 							"name": "Get all",
 							"request": {
 								"method": "GET",
@@ -37,7 +45,23 @@
 							"response": []
 						},
 						{
-							"name": "Insert",
+							"name": "Update User",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get by Project id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Set Country",
 							"request": {
 								"method": "GET",
 								"header": []
