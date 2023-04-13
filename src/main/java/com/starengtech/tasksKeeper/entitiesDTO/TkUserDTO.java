@@ -16,9 +16,11 @@ public class TkUserDTO implements Serializable {
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long projectId;
     private String fName;
     private String lName;
     private String email;
+    private String country;
     private String password;
     private boolean flActive;
 
@@ -30,9 +32,11 @@ public class TkUserDTO implements Serializable {
 
     public TkUserDTO(TkUser tkuser){
         this.id = tkuser.getId();
-        this.fName = tkuser.getFName();
-        this.lName = tkuser.getLName();
+        this.projectId = tkuser.getProjectId();
+        this.fName = tkuser.getfName();
+        this.lName = tkuser.getlName();
         this.email = tkuser.getEmail();
+        this.country = tkuser.getCountry();
         this.password = tkuser.getPassword();
         this.flActive = tkuser.isFlActive();
         this.sections = tkuser.getSections();
@@ -40,6 +44,10 @@ public class TkUserDTO implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getProjectId() {
+        return projectId;
     }
 
     public String getFName() {
@@ -52,6 +60,10 @@ public class TkUserDTO implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public String getPassword() {

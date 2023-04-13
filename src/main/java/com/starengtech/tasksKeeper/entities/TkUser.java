@@ -16,12 +16,11 @@ import java.util.Objects;
 public class TkUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static final String NONE = "NONE";
-
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long projectId;
     private String fName;
     private String lName;
@@ -49,7 +48,6 @@ public class TkUser implements Serializable {
         this.lName = lName;
         this.email = email;
         this.password = password;
-        this.country = NONE;
         this.flActive = true;
     }
     public TkUser(Long id, String fName, String lName, String email, String password, String country) {

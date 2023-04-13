@@ -56,8 +56,8 @@ public class TkUserResource {
     }
 
     @PostMapping
-    public ResponseEntity<TkUserDTO> insert(@RequestBody TkUser Profile){
-        TkUserDTO ProfileDTO = new TkUserDTO(service.insert(Profile));
+    public ResponseEntity<TkUserDTO> insert(@RequestBody TkUser user){
+        TkUserDTO ProfileDTO = new TkUserDTO(service.insert(user));
         return ResponseEntity.ok().body(ProfileDTO);
     }
 
@@ -69,10 +69,20 @@ public class TkUserResource {
 
     //--------------
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/find-by-project/{projectId}")
     public ResponseEntity<List<TkUser>> findByProjectId(@PathVariable Long projectId){
         List<TkUser> list = service.findByProjectId(projectId);
         //List<TkUserDTO> listDto = list.stream().map(x -> new TkUserDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(list);
+    }
+
+    @PutMapping(value = "/{id}/set-country")
+    public ResponseEntity<TkUser> setCountry(@PathVariable Long id,  @RequestParam(name = "country") String country){
+        return ResponseEntity.ok().body(service.setCountry(id,country));
+    }
+
+    @PutMapping(value = "/{id}/update")
+    public ResponseEntity<TkUser> update(@PathVariable Long id,@RequestBody TkUser user){
+        return ResponseEntity.ok().body(service.update(id,user));
     }
 }

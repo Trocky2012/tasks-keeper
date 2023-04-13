@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface TkUserRepository extends JpaRepository<TkUser, Long> {
     Optional<TkUser> findByEmail(String email);
     Optional<TkUser> findByEmailAndPassword(String email, String password);
-    List<TkUser> findByProjectId(Long projectId);
+    List<TkUser> findByProjectId(Long project);
 }
