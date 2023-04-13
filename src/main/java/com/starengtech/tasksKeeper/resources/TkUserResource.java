@@ -66,4 +66,13 @@ public class TkUserResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    //--------------
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<List<TkUser>> findByProjectId(@PathVariable Long projectId){
+        List<TkUser> list = service.findByProjectId(projectId);
+        //List<TkUserDTO> listDto = list.stream().map(x -> new TkUserDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(list);
+    }
 }

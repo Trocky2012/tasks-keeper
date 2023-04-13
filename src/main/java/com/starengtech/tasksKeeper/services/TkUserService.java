@@ -68,12 +68,17 @@ public class TkUserService {
     public TkUser update(Long id, TkUser profile) {
         try {
             TkUser entity = repository.getById(id);
-            entity.setFName(profile.getFName());
-            entity.setLName(profile.getLName());
+            entity.setfName(profile.getfName());
+            entity.setlName(profile.getlName());
             return repository.save(entity);
         }catch(EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
+    //---------------
+
+    public List<TkUser> findByProjectId(Long projectId){
+        return repository.findByProjectId(projectId);
+    }
 }

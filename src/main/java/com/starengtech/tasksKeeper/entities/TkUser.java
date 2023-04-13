@@ -16,12 +16,16 @@ import java.util.Objects;
 public class TkUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private static final String NONE = "NONE";
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long projectId;
     private String fName;
     private String lName;
+    private String country;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -45,15 +49,26 @@ public class TkUser implements Serializable {
         this.lName = lName;
         this.email = email;
         this.password = password;
+        this.country = NONE;
         this.flActive = true;
     }
-    public TkUser(Long id, String fName, String lName, String email, String password, List<TkSection> sections) {
+    public TkUser(Long id, String fName, String lName, String email, String password, String country) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.password = password;
+        this.country = country;
+        this.flActive = true;
+    }
+    public TkUser(Long id, String fName, String lName, String email, String password, String country, List<TkSection> sections) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.password = password;
         this.sections = sections;
+        this.country = country;
         this.flActive = true;
     }
 
@@ -65,20 +80,36 @@ public class TkUser implements Serializable {
         this.id = id;
     }
 
-    public String getFName() {
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getfName() {
         return fName;
     }
 
-    public void setFName(String fName) {
+    public void setfName(String fName) {
         this.fName = fName;
     }
 
-    public String getLName() {
+    public String getlName() {
         return lName;
     }
 
-    public void setLName(String lName) {
+    public void setlName(String lName) {
         this.lName = lName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getEmail() {
