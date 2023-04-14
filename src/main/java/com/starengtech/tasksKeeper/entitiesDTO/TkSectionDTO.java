@@ -1,11 +1,14 @@
 package com.starengtech.tasksKeeper.entitiesDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.starengtech.tasksKeeper.entities.TkNote;
 import com.starengtech.tasksKeeper.entities.TkSection;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -21,14 +24,16 @@ public class TkSectionDTO implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
 
+    private List<TkNote> notes = new ArrayList<>();
 
     public TkSectionDTO() {
     }
 
-    public TkSectionDTO(TkSection tksection){
-        this.id = tksection.getId();
-        this.title = tksection.getTitle();
-        this.insertTime = tksection.getInsertTime();
+    public TkSectionDTO(TkSection section){
+        this.id = section.getId();
+        this.title = section.getTitle();
+        this.insertTime = section.getInsertTime();
+        this.notes = section.getNotes();
     }
 
     public Long getId() {
@@ -55,6 +60,9 @@ public class TkSectionDTO implements Serializable {
         this.insertTime = insertTime;
     }
 
+    public List<TkNote> getNotes() {
+        return notes;
+    }
 
     @Override
     public boolean equals(Object o) {

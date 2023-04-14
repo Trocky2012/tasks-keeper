@@ -42,9 +42,10 @@ public class TkNoteService {
         }
     }
 
-    public TkNote insert(TkNote section) {
-        section.setInsertTime(Instant.now());
-        return repository.save(section);
+    public TkNote insert(TkNote note) {
+        note.setInsertTime(Instant.now());
+        note.setSectionTitle(note.getSectionTitle());
+        return repository.save(note);
     }
 
     public void delete(Long id) {
@@ -69,8 +70,8 @@ public class TkNoteService {
 
     //-------------
 
-    public List<TkNote> findBySection(TkSection tkSection){
-        return repository.findByTkSection(tkSection);
+    public List<TkNote> findBySection(TkSection section){
+        return repository.findBySection(section);
     }
     public List<TkNote> findByUserId(Long id){
         return repository.findByUserId(id);

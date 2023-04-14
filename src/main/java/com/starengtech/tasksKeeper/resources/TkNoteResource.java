@@ -55,9 +55,9 @@ public class TkNoteResource {
     }
 
     @PostMapping
-    public ResponseEntity<TkNoteDTO> insert(@RequestBody TkNote Profile){
-        TkNoteDTO ProfileDTO = new TkNoteDTO(service.insert(Profile));
-        return ResponseEntity.ok().body(ProfileDTO);
+    public ResponseEntity<TkNoteDTO> insert(@RequestBody TkNote note){
+        TkNoteDTO tkNoteDTO = new TkNoteDTO(service.insert(note));
+        return ResponseEntity.ok().body(tkNoteDTO);
     }
 
     @DeleteMapping(value = "/{id}/m$s*a")
@@ -69,8 +69,8 @@ public class TkNoteResource {
     //-------------
 
     @GetMapping(value = "/find-by-section")
-    public ResponseEntity<List<TkNoteDTO>> findBySection (@RequestBody TkSection tkSection){
-        List<TkNote> list = service.findBySection (tkSection);
+    public ResponseEntity<List<TkNoteDTO>> findBySection (@RequestBody TkSection section){
+        List<TkNote> list = service.findBySection (section);
         List<TkNoteDTO> listDto = list.stream().map(x -> new TkNoteDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }

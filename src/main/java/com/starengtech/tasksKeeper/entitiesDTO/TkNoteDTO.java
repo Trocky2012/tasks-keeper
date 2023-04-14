@@ -3,6 +3,7 @@ package com.starengtech.tasksKeeper.entitiesDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.starengtech.tasksKeeper.entities.Enum.NoteStatus;
 import com.starengtech.tasksKeeper.entities.TkNote;
+import com.starengtech.tasksKeeper.entities.TkSection;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +20,10 @@ public class TkNoteDTO implements Serializable {
     private Long userId;
     private String title;
     private String content;
+    private String date;
+    private String sectionTitle;
     private NoteStatus noteStatus;
+    private TkSection section;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
     private Instant insertTime;
@@ -31,10 +35,13 @@ public class TkNoteDTO implements Serializable {
     public TkNoteDTO(TkNote tknote){
         this.id = tknote.getId();
         this.userId = tknote.getUserId();
+        this.date = tknote.getDate();
+        this.sectionTitle = tknote.getSectionTitle();
         this.title = tknote.getTitle();
         this.content = tknote.getContent();
         this.noteStatus=tknote.getNoteStatus();
         this.insertTime = tknote.getInsertTime();
+        this.section= tknote.getSection();
     }
 
     public Long getId() {
@@ -75,6 +82,22 @@ public class TkNoteDTO implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public NoteStatus getNoteStatus() {
+        return noteStatus;
+    }
+
+    public TkSection getSection() {
+        return section;
+    }
+
+    public String getSectionTitle() {
+        return sectionTitle;
     }
 
     @Override

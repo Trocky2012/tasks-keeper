@@ -29,7 +29,7 @@ public class TkSection implements Serializable {
     private TkUser tkUser;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "tkSection")
+    @OneToMany(mappedBy = "section")
     private List<TkNote> notes = new ArrayList<>();
 
     public TkSection() {
@@ -71,6 +71,14 @@ public class TkSection implements Serializable {
 
     public void setTkUser(TkUser tkUser) {
         this.tkUser = tkUser;
+    }
+
+    public List<TkNote> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<TkNote> notes) {
+        this.notes = notes;
     }
 
     @Override

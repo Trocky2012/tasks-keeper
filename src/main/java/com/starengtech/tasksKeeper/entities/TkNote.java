@@ -20,6 +20,8 @@ public class TkNote implements Serializable {
     private Long userId;
     private String title;
     private String content;
+    private String date;
+    private String sectionTitle;
     private NoteStatus noteStatus;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "Canada/Atlantic")
@@ -27,25 +29,52 @@ public class TkNote implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "sectionId")
-    private TkSection tkSection;
+    private TkSection section;
 
     public TkNote() {
     }
 
-    public TkNote(Long id, Long userId, String title, TkSection tkSection ) {
+    public TkNote(Long id, Long userId, String date, String title, TkSection tkSection ) {
         this.id = id;
         this.userId = userId;
+        this.date = date;
         this.title = title;
-        this.tkSection = tkSection;
+        this.section = tkSection;
         this.noteStatus = NoteStatus.ACTIVE;
+        this.sectionTitle = tkSection.getTitle();
     }
-    public TkNote(Long id, Long userId, String title, String content, TkSection tkSection ) {
+
+    public TkNote(Long id, Long userId, String date, String title, TkSection tkSection, String sectionTitle) {
         this.id = id;
         this.userId = userId;
+        this.date = date;
+        this.title = title;
+        this.section = tkSection;
+        this.noteStatus = NoteStatus.ACTIVE;
+        this.sectionTitle = sectionTitle;
+    }
+
+    public TkNote(Long id, Long userId, String date, String title, String content, TkSection tkSection ) {
+        this.id = id;
+        this.userId = userId;
+        this.date = date;
         this.content = content;
         this.title = title;
-        this.tkSection = tkSection;
+        this.section = tkSection;
         this.noteStatus = NoteStatus.ACTIVE;
+        this.sectionTitle = tkSection.getTitle();
+    }
+
+
+    public TkNote(Long id, Long userId, String date, String title, String content, TkSection tkSection, String sectionTitle) {
+        this.id = id;
+        this.userId = userId;
+        this.date = date;
+        this.content = content;
+        this.title = title;
+        this.section = tkSection;
+        this.noteStatus = NoteStatus.ACTIVE;
+        this.sectionTitle = sectionTitle;
     }
 
     public Long getId() {
@@ -80,12 +109,12 @@ public class TkNote implements Serializable {
         this.insertTime = insertTime;
     }
 
-    public TkSection getTkSection() {
-        return tkSection;
+    public TkSection getSection() {
+        return section;
     }
 
-    public void setTkSection(TkSection tkSection) {
-        this.tkSection = tkSection;
+    public void setSection(TkSection section) {
+        this.section = section;
     }
 
     public Long getUserId() {
@@ -102,6 +131,22 @@ public class TkNote implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getSectionTitle() {
+        return sectionTitle;
+    }
+
+    public void setSectionTitle(String sectionTitle) {
+        this.sectionTitle = sectionTitle;
     }
 
     @Override
