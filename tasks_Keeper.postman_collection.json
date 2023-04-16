@@ -67,6 +67,14 @@
 								"header": []
 							},
 							"response": []
+						},
+						{
+							"name": "Delete by id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -99,6 +107,14 @@
 						},
 						{
 							"name": "Insert",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Delete by id",
 							"request": {
 								"method": "GET",
 								"header": []
@@ -144,6 +160,32 @@
 						},
 						{
 							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"userId\": 1,\r\n    \"title\": \"New Note for Birthday\",\r\n    \"content\": \"My birthday\",\r\n    \"sectionTitle\": \"Title 1 for Thiago\",\r\n    \"date\": \"2023-10-23\",\r\n    \"tksection\": {\r\n        \"id\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/tknote",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"tknote"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete by id",
 							"request": {
 								"method": "GET",
 								"header": []
